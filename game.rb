@@ -29,7 +29,7 @@ class TicTacToe
     show_results
   end
 
-  def start_games
+  def start_game
     9.times do
       computer_turn
       create_board
@@ -39,5 +39,13 @@ class TicTacToe
     end
   end
 
+  def show_results
+    if winner("X")
+      puts "'X' wins!!"
+    elsif winner("O")
+      puts "'O' wins!!"
+    else cats_game
+      puts "Cats game. It's a tie."
+  end
 
 end
