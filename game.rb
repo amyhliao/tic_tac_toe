@@ -28,4 +28,16 @@ class TicTacToe
     start_game
     show_results
   end
+
+  def start_games
+    9.times do
+      computer_turn
+      create_board
+      break if winner("X") || winner("O") || cats_game
+      player_turn
+      break if winner("X") || winner("O") || cats_game
+    end
+  end
+
+
 end
