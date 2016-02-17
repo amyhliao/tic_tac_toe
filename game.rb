@@ -69,4 +69,33 @@ class TicTacToe
     turn = find_computer_turn
     update_board(turn, "O")
   end
+
+  def find_computer_turn
+    @win_combos.each do |row|
+      if count_rows(row, "O") == 2
+        return empty_cell row
+      end
+    end
+    @win_combos.each do |row|
+      if count_rows(row, "X") == 2
+        return empty_cell row
+      end
+    end
+    @win_combos.each do |row|
+      if count_rows(row, "O") == 1
+        return empty_cell row
+      end
+    end
+    @win_combos.each do |row|
+      if count_rows(row, "X") == 1
+        return empty_cell row
+      end
+    end
+    @board.each_index do |cell|
+      if @board[cell] == "_"
+        return cell
+      end
+    end
+  end
+
 end
