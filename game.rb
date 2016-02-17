@@ -62,7 +62,7 @@ class TicTacToe
   end
 
   def check_num turn
-    turn.between?(0, 8) && @board[turn] == "_"
+    turn.between?(0, 8) && @board[turn] == " "
   end
 
   def computer_turn
@@ -92,7 +92,7 @@ class TicTacToe
       end
     end
     @board.each_index do |cell|
-      if @board[cell] == "_"
+      if @board[cell] == " "
         return cell
       end
     end
