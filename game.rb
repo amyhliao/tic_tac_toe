@@ -65,5 +65,8 @@ class TicTacToe
     turn.between?(0, 8) && @board[turn] == "_"
   end
 
-  def computer
+  def computer_turn
+    turn = find_computer_turn
+    update_board(turn, "O")
+  end
 end
