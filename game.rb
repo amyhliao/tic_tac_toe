@@ -40,12 +40,30 @@ class TicTacToe
   end
 
   def show_results
-    if winner("X")
-      puts "'X' wins!!"
+    if cats_game
+      puts "Cats game. It's a tie."
     elsif winner("O")
       puts "'O' wins!!"
     else cats_game
-      puts "Cats game. It's a tie."
+      puts "'X' wins!!"
+  end
+  create_board
+
+  def player_turn
+    # puts "Please enter a number between 1 - 9"
+    turn = gets.chomp.to_i
+    if check_num turn
+      update_board(turn, "X")
+    else
+      puts "Please enter another number."
+      create_board
+      player_turn
+    end
   end
 
+  def check_num turn
+    turn.between?(0, 8) && @board[turn] == "_"
+  end
+
+  def computer
 end
