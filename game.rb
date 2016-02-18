@@ -61,7 +61,7 @@ class TicTacToe
     end
   end
 
-  def check_num turn
+  def check_num(turn)
     turn.between?(0, 8) && @board[turn] == " "
   end
 
@@ -98,4 +98,18 @@ class TicTacToe
     end
   end
 
+  def count_rows(row, user)
+    total = 0
+    row.each do |index|
+      total += 1 if @board[index] == user
+      unless @board[index] == user or @board[index] == " "
+        return 0
+      end
+    end
+    total
+  end
+
 end
+
+game = TicTacToe.new
+game.start
