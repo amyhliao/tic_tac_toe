@@ -73,22 +73,22 @@ class TicTacToe
   def find_computer_turn
     @win_combos.each do |row|
       if count_rows(row, "O") == 2
-        return empty_cell row
+        return empty_cell(row)
       end
     end
     @win_combos.each do |row|
       if count_rows(row, "X") == 2
-        return empty_cell row
+        return empty_cell(row)
       end
     end
     @win_combos.each do |row|
       if count_rows(row, "O") == 1
-        return empty_cell row
+        return empty_cell(row)
       end
     end
     @win_combos.each do |row|
       if count_rows(row, "X") == 1
-        return empty_cell row
+        return empty_cell(row)
       end
     end
     @board.each_index do |cell|
@@ -108,6 +108,17 @@ class TicTacToe
     end
     total
   end
+
+  def empty_cell(row)
+    row.each do |index|
+      return index if @board[index] == " "
+    end
+  end
+
+  def update_board(move, user)
+    @board[move] = user
+  end
+
 
 end
 
