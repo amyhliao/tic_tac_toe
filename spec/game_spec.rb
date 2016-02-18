@@ -5,7 +5,7 @@ describe TicTacToe do
 
   describe '#create_board' do
     it "should return a blank board" do
-      expect(game.create_board).to eq(0)
+      expect(game.create_board).to eq(true)
     end
   end
 end
