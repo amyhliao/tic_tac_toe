@@ -17,14 +17,15 @@ class TicTacToe
   end
 
   def start
-    puts "Instructions: Please enter a number between 1 - 9 for the corresponding cells."
+    puts "Instructions: Please enter a number between 1 - 9 for the corresponding cells blow."
     puts "_____________",
          "| 1 | 2 | 3 |",
          "_____________",
          "| 4 | 5 | 6 |",
          "_____________",
          "| 7 | 8 | 9 |",
-         "_____________"
+         "_____________",
+         "********************"
     start_game
     show_results
   end
@@ -51,12 +52,12 @@ class TicTacToe
   end
 
   def player_turn
-    # puts "Please enter a number between 1 - 9"
-    turn = gets.chomp.to_i
+    puts "Please enter a number between 1 - 9"
+    turn = gets.chomp.to_i - 1
     if check_num(turn)
       update_board(turn, "X")
     else
-      puts "Please enter another number."
+      puts "Cell taken. Please enter another number."
       create_board
       player_turn
     end
@@ -64,6 +65,10 @@ class TicTacToe
 
   def check_num(turn)
     turn.between?(0, 8) && @board[turn] == " "
+  end
+
+  def update_board(move, player)
+    @board[move] = player
   end
 
   def computer_turn
@@ -114,13 +119,10 @@ class TicTacToe
     row.find { |index| @board[index] == " "}
   end
 
-  def update_board(move, user)
-    @board[move] = user
-  end
 
   def winner(letter)
     @win_combos.any? do |cell1, cell2, cell3|
-      [letter, letter, letter] = [@board[cell1], @board[cell2], @board[cell3]]
+      [letter, letter, letter] == [@board[cell1], @board[cell2], @board[cell3]]
     end
   end
 
