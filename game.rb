@@ -44,15 +44,16 @@ class TicTacToe
       puts "Cats game. It's a tie."
     elsif winner("O")
       puts "'O' wins!!"
-    else cats_game
+    else
       puts "'X' wins!!"
+    end
+    create_board
   end
-  create_board
 
   def player_turn
     # puts "Please enter a number between 1 - 9"
     turn = gets.chomp.to_i
-    if check_num turn
+    if check_num(turn)
       update_board(turn, "X")
     else
       puts "Please enter another number."
@@ -98,11 +99,11 @@ class TicTacToe
     end
   end
 
-  def count_rows(row, user)
+  def count_rows(row, player)
     total = 0
     row.each do |index|
-      total += 1 if @board[index] == user
-      unless @board[index] == user or @board[index] == " "
+      total += 1 if @board[index] == player
+      if @board[index] != player && @board[index] != " "
         return 0
       end
     end
@@ -110,16 +111,22 @@ class TicTacToe
   end
 
   def empty_cell(row)
-    row.each do |index|
-      return index if @board[index] == " "
-    end
+    row.find { |index| @board[index] == " "}
   end
 
   def update_board(move, user)
     @board[move] = user
   end
 
+  def winner(letter)
+    @win_combos.any? do |cell1, cell2, cell3|
+      [letter, letter, letter] = [@board[cell1], @board[cell2], @board[cell3]]
+    end
+  end
 
+  def cats_game
+    !winner("X") && !winner("O") && @board.none? { |cell| cell == " " }
+  end
 end
 
 game = TicTacToe.new
