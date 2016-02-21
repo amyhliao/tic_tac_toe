@@ -1,4 +1,6 @@
 class TicTacToe
+  X_MARK = "X"
+  O_MARK = "O"
   WIN_COMBOS = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
 
   attr_accessor :board
@@ -35,66 +37,58 @@ class TicTacToe
     9.times do
       computer_turn
       create_board
-      break if winner("X") || winner("O") || cats_game
+      break if winner(X_MARK) || winner(O_MARK) || cats_game
       player_turn
-      break if winner("X") || winner("O") || cats_game
+      break if winner(X_MARK) || winner(O_MARK) || cats_game
     end
   end
 
   def show_results
     if cats_game
       puts "Cats game. It's a tie."
-    elsif winner("O")
-      puts "'O' wins!!"
+    elsif winner(O_MARK)
+      puts "'O' player wins!!"
     else
-      puts "'X' wins!!"
+      puts "'X' player wins!!"
     end
     create_board
+  end
+
+  def computer_turn
+    turn = find_computer_turn
+    update_board(turn, O_MARK)
   end
 
   def player_turn
     puts "Please enter a number between 1 - 9"
     turn = gets.to_i - 1
     if check_num(turn)
-      update_board(turn, "X")
+      update_board(turn, X_MARK)
     else
-      puts "Cell taken. Please enter another number."
+      puts "Number is invalid or already taken. Please enter another number."
       create_board
       player_turn
     end
   end
 
-  def check_num(turn)
-    turn.between?(0, 8) && @board[turn] == " "
-  end
-
-  def update_board(move, player)
-    @board[move] = player
-  end
-
-  def computer_turn
-    turn = find_computer_turn
-    update_board(turn, "O")
-  end
-
   def find_computer_turn
     WIN_COMBOS.each do |row|
-      if count_rows(row, "O") == 2
+      if count_rows(row, O_MARK) == 2
         return empty_cell(row)
       end
     end
     WIN_COMBOS.each do |row|
-      if count_rows(row, "X") == 2
+      if count_rows(row, X_MARK) == 2
         return empty_cell(row)
       end
     end
     WIN_COMBOS.each do |row|
-      if count_rows(row, "O") == 1
+      if count_rows(row, O_MARK) == 1
         return empty_cell(row)
       end
     end
     WIN_COMBOS.each do |row|
-      if count_rows(row, "X") == 1
+      if count_rows(row, X_MARK) == 1
         return empty_cell(row)
       end
     end
@@ -103,6 +97,14 @@ class TicTacToe
         return cell
       end
     end
+  end
+
+  def update_board(move, player)
+    @board[move] = player
+  end
+
+  def check_num(turn)
+    turn.between?(0, 8) && @board[turn] == " "
   end
 
   def count_rows(row, player)
@@ -127,7 +129,7 @@ class TicTacToe
   end
 
   def cats_game
-    !winner("X") && !winner("O") && @board.none? { |cell| cell == " " }
+    !winner(X_MARK) && !winner(O_MARK) && @board.none? { |cell| cell == " " }
   end
 end
 
