@@ -9,6 +9,18 @@ describe TicTacToe do
     end
   end
 
+    it "sets the grid with three rows by default" do
+        board = Board.new
+        expect(board.grid.size).to eq(3)
+      end
+
+    it "creates three things in each row by default" do
+        board = Board.new
+        board.grid.each do |row|
+          expect(row.size).to eq(3)
+        end
+      end
+
   # describe '#create_board' do
   #   it "should create three cells in each row" do
   #     expect(game.create_board.size).to eq(3)
