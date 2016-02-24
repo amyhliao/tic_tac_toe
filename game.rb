@@ -9,28 +9,28 @@ class TicTacToe
     @board = [" "] * 9
   end
 
-  # def create_board
-  #   puts ""
-  #   puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
-  #   puts "-----------"
-  #   puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
-  #   puts "-----------"
-  #   puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
-  #   puts ""
-  # end
+  def create_board
+    puts ""
+    puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
+    puts "-----------"
+    puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
+    puts "-----------"
+    puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
+    puts ""
+  end
 
-  # def start
-  #   puts "Instructions: Please enter a number between 1 - 9 for the corresponding cells blow."
-  #   puts ""
-  #   puts " 1 | 2 | 3 "
-  #   puts "-----------"
-  #   puts " 4 | 5 | 6 "
-  #   puts "-----------"
-  #   puts " 7 | 8 | 9 "
-  #   puts ""
-  #   start_game
-  #   show_results
-  # end
+  def start
+    puts "Instructions: Please enter a number between 1 - 9 for the corresponding cells blow."
+    puts ""
+    puts " 1 | 2 | 3 "
+    puts "-----------"
+    puts " 4 | 5 | 6 "
+    puts "-----------"
+    puts " 7 | 8 | 9 "
+    puts ""
+    start_game
+    show_results
+  end
 
   def start_game
     9.times do
@@ -133,4 +133,4 @@ class TicTacToe
 end
 
 game = TicTacToe.new
-# game.start
+game.start

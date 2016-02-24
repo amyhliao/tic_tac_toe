@@ -19,9 +19,22 @@ describe TicTacToe do
     # end
   end
 
+  describe '#start' do
+    it "should have a new game start" do
+      expect(game.start).not_to eq(0)
+    end
+
+    it "should print start with instructions" do
+      # allow(game).to receive(:start)
+      expected = "Instructions: Please enter a number between 1 - 9 for the corresponding cells blow."
+      expect(game.start).to eq expected
+      # expect(game.start).to start_with("Instructions")
+    end
+  end
+
   describe '#start_game' do
     it "should have the computer start the game with a move" do
-      expect(game.start_game).to eq(0)
+      expect(game.start_game).to be nil
     end
   end
 
