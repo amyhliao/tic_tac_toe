@@ -4,19 +4,19 @@ describe TicTacToe do
   let(:game) { TicTacToe.new }
 
   describe "#initialize" do
-    it "initializes the game with a board" do
+    it "should initialize the game with a board" do
       expect{ TicTacToe.new }.to_not raise_error
     end
-    # it "sets the grid with three rows by default" do
-    #   board = TicTacToe.new
-    #   expect(board.count).to eq(3)
-    # end
-    # it "creates three things in each row by default" do
-    #   board = TicTacToe.new
-    #   board.grid.each do |row|
-    #     expect(row.size).to eq(3)
-    #   end
-    # end
+
+    it "should set the board with empty cells by default" do
+      expect(game.board).to eq([" "] * 9)
+    end
+  end
+
+  describe "#create_board" do
+    it "should set the board with empty cells by default" do
+      expect(game.create_board).to eq([" "] * 9)
+    end
   end
 
   describe '#start' do
@@ -27,7 +27,7 @@ describe TicTacToe do
     it "should print start with instructions" do
       # allow(game).to receive(:start)
       expected = "Instructions: Please enter a number between 1 - 9 for the corresponding cells blow."
-      expect(game.start).to eq expected
+      expect(game.start).to start_with expected
       # expect(game.start).to start_with("Instructions")
     end
   end
