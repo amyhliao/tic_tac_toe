@@ -66,7 +66,7 @@ class TicTacToe
     else
       puts "Number is invalid or already taken. Please enter another number."
       create_board
-      player_turn
+      # player_turn
     end
   end
 
