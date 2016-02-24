@@ -36,7 +36,6 @@ describe TicTacToe do
     it "should have the computer start the game with a move" do
       expect(game.start_game).to be nil
     end
-  end
 
   # describe '#create_board' do
   #   it "should return a blank board" do
@@ -44,25 +43,25 @@ describe TicTacToe do
   #   end
   # end
 
-  describe "#start_game" do
-      it "returns winner if winner is true" do
-        # board = TicTacToe.new
-        game.stub(:winner) { true }
-        expect(game.start_game).to eq :winner
-      end
 
-      it "it returns :draw if winner? is false and draw? is true" do
-        # board = TicTacToe.new
-        game.stub(:winner) { false }
-        game.stub(:cats_game) { true }
-        expect(game.start_game).to eq :cats_game
-      end
-
-      it "returns false if winner? is false and draw? is false" do
-        # board = TicTacToe.new
-        game.stub(:winner) { false }
-        game.stub(:cats_game) { false }
-        expect(game.start_game).to eq false
-      end
+    it "returns winner if winner is true" do
+      # board = TicTacToe.new
+      game.stub(:winner) { true }
+      expect(game.start_game).to eq :winner
     end
+
+    it "it returns :draw if winner? is false and draw? is true" do
+      # board = TicTacToe.new
+      game.stub(:winner) { false }
+      game.stub(:cats_game) { true }
+      expect(game.start_game).to eq :cats_game
+    end
+
+    it "returns false if winner? is false and draw? is false" do
+      # board = TicTacToe.new
+      game.stub(:winner) { false }
+      game.stub(:cats_game) { false }
+      expect(game.start_game).to eq false
+    end
+  end
 end
