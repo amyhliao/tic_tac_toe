@@ -38,8 +38,12 @@ describe TicTacToe do
   end
 
   describe '#count_rows' do
-    it "should return true if there are not empty cells in a row." do
-      expect(game.count_rows([])).not_to eq false
+    it "should return a row count of zero if player 'X' tries to make a move on that row." do
+      expect(game.count_rows([], "X")).to eq(0)
+    end
+
+    it "should return a row count of zero if player 'O' tries to make a move on that row." do
+      expect(game.count_rows([], "O")).to eq(0)
     end
   end
 
