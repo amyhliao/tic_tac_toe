@@ -37,8 +37,14 @@ describe TicTacToe do
     end
   end
 
+  describe '#player_turn' do
+    it "should return false when there are not turns for the player" do
+      expect(game.player_turn).to be_falsey
+    end
+  end
+
   describe '#find_computer_turn' do
-    it "should return 0 when the computer cannot find a turn." do
+    it "should return 0 when the computer cannot find a turn" do
       expect(game.find_computer_turn).to eq(0)
     end
   end
