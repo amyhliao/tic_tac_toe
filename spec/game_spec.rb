@@ -37,6 +37,16 @@ describe TicTacToe do
     end
   end
 
+  describe '#check_num' do
+    it "should return true if the player enters a number between 0-8." do
+      expect(game.check_num(5)).to eq true
+    end
+
+    it "should return flase if the player enters a number not between 0-8." do
+      expect(game.check_num(9)).to eq false
+    end
+  end
+
   describe '#count_rows' do
     it "should return a row count of zero if player 'X' tries to make a move on that row." do
       expect(game.count_rows([], "X")).to eq(0)
