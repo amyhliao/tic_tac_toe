@@ -37,38 +37,44 @@ describe TicTacToe do
     end
   end
 
+  describe '#find_computer_turn' do
+    it "should return 0 when the computer cannot find a turn." do
+      expect(game.find_computer_turn).to eq(0)
+    end
+  end
+
   describe '#update_board' do
-    it "should have the 'O' player put their marker on cell 2." do
+    it "should have the 'O' player put their marker on cell 2" do
       expect(game.update_board(2, "O")).to eq("O")
     end
 
-    it "should have the 'X' player put their marker on cell 8." do
+    it "should have the 'X' player put their marker on cell 8" do
       expect(game.update_board(8, "X")).to eq("X")
     end
   end
 
   describe '#check_num' do
-    it "should return true if the player enters a number between 0-8." do
+    it "should return true if the player enters a number between 0-8" do
       expect(game.check_num(5)).to eq true
     end
 
-    it "should return flase if the player enters a number not between 0-8." do
+    it "should return flase if the player enters a number not between 0-8" do
       expect(game.check_num(9)).to eq false
     end
   end
 
   describe '#count_rows' do
-    it "should return a row count of zero if player 'X' tries to make a move on that row." do
+    it "should return a row count of zero if player 'X' tries to make a move on that row" do
       expect(game.count_rows([], "X")).to eq(0)
     end
 
-    it "should return a row count of zero if player 'O' tries to make a move on that row." do
+    it "should return a row count of zero if player 'O' tries to make a move on that row" do
       expect(game.count_rows([], "O")).to eq(0)
     end
   end
 
   describe '#empty_cell' do
-    it "should return true if there are not empty cells in a row." do
+    it "should return true if there are not empty cells in a row" do
       expect(game.empty_cell([])).not_to eq false
     end
   end
