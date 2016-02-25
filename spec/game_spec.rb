@@ -37,6 +37,16 @@ describe TicTacToe do
     end
   end
 
+  describe '#update_board' do
+    it "should have the 'O' player put their marker on cell 2." do
+      expect(game.update_board(2, "O")).to eq("O")
+    end
+
+    it "should have the 'X' player put their marker on cell 8." do
+      expect(game.update_board(8, "X")).to eq("X")
+    end
+  end
+
   describe '#check_num' do
     it "should return true if the player enters a number between 0-8." do
       expect(game.check_num(5)).to eq true
