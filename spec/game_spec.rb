@@ -30,10 +30,10 @@ describe TicTacToe do
       expect(game.start_game).to be nil
     end
 
-    it "returns false if winner? is false and draw? is false" do
+    it "should how nine empty spaces at the beginning of the game" do
       game.stub(:winner) { false }
       game.stub(:cats_game) { false }
-      expect(game.start_game).to eq false
+      expect(game.start_game).to eq(9)
     end
   end
 
@@ -52,7 +52,6 @@ describe TicTacToe do
       game.stub(:winner) { true }
       expect(game.winner("O")).to eq true
     end
-
   end
 
   describe '#cats_game' do
