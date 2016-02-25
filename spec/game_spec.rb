@@ -30,10 +30,22 @@ describe TicTacToe do
       expect(game.start_game).to be nil
     end
 
-    it "should how nine empty spaces at the beginning of the game" do
+    it "should show nine empty spaces at the beginning of the game" do
       game.stub(:winner) { false }
       game.stub(:cats_game) { false }
       expect(game.start_game).to eq(9)
+    end
+  end
+
+  describe '#count_rows' do
+    it "should return true if there are not empty cells in a row." do
+      expect(game.count_rows([])).not_to eq false
+    end
+  end
+
+  describe '#empty_cell' do
+    it "should return true if there are not empty cells in a row." do
+      expect(game.empty_cell([])).not_to eq false
     end
   end
 
