@@ -15,7 +15,7 @@ describe TicTacToe do
 
   describe "#create_board" do
     it "should set the board with empty cells by default" do
-      expect(game.create_board).to eq(nil)
+      expect(game.create_board).not_to be_truthy
     end
   end
 
@@ -34,6 +34,12 @@ describe TicTacToe do
       game.stub(:winner) { false }
       game.stub(:cats_game) { false }
       expect(game.start_game).to eq(9)
+    end
+  end
+
+  describe '#show_results' do
+    it "should be false when the results are shown during a game" do
+      expect(game.show_results).to be_falsey
     end
   end
 
