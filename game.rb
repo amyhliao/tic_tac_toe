@@ -70,6 +70,12 @@ class TicTacToe
     end
   end
 
+def current_turn_on_board(mark, value)
+  WIN_COMBOS.each do |row|
+    return empty_cell(row) if count_rows(row, mark) == value
+  end
+end
+
   def find_computer_turn
     WIN_COMBOS.each do |row|
       if count_rows(row, O_MARK) == 2
