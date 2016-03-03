@@ -36,16 +36,16 @@ class TicTacToe
     9.times do
       computer_turn
       create_board
-      break if winner(X_MARK) || winner(O_MARK) || cats_game?
+      break if winner?(X_MARK) || winner?(O_MARK) || cats_game?
       player_turn
-      break if winner(X_MARK) || winner(O_MARK) || cats_game?
+      break if winner?(X_MARK) || winner?(O_MARK) || cats_game?
     end
   end
 
   def show_results
     if cats_game?
       puts "Cats game. It's a tie."
-    elsif winner(O_MARK)
+    elsif winner?(O_MARK)
       puts "'O' player wins!!"
     else
       puts "'X' player wins!!"
@@ -121,14 +121,14 @@ class TicTacToe
     row.find { |index| @board[index] == " "}
   end
 
-  def winner(letter)
+  def winner?(letter)
     WIN_COMBOS.any? do |cell1, cell2, cell3|
       [letter, letter, letter] == [@board[cell1], @board[cell2], @board[cell3]]
     end
   end
 
   def cats_game?
-    !winner(X_MARK) && !winner(O_MARK) && @board.none? { |cell| cell == " " }
+    !winner?(X_MARK) && !winner?(O_MARK) && @board.none? { |cell| cell == " " }
   end
 end
 
