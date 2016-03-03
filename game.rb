@@ -20,7 +20,7 @@ class TicTacToe
   end
 
   def start
-    puts "Instructions: Please enter a number between 1 - 9 for the corresponding cells blow."
+    puts "Instructions: Please enter a number between 1 - 9 for the corresponding cells below."
     puts ""
     puts " 1 | 2 | 3 "
     puts "-----------"
