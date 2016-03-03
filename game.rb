@@ -36,14 +36,14 @@ class TicTacToe
     9.times do
       computer_turn
       create_board
-      break if winner(X_MARK) || winner(O_MARK) || cats_game
+      break if winner(X_MARK) || winner(O_MARK) || cats_game?
       player_turn
-      break if winner(X_MARK) || winner(O_MARK) || cats_game
+      break if winner(X_MARK) || winner(O_MARK) || cats_game?
     end
   end
 
   def show_results
-    if cats_game
+    if cats_game?
       puts "Cats game. It's a tie."
     elsif winner(O_MARK)
       puts "'O' player wins!!"
@@ -66,7 +66,7 @@ class TicTacToe
     else
       puts "Number is invalid or already taken. Please enter another number."
       create_board
-      player_turn
+      # player_turn
     end
   end
 
@@ -127,7 +127,7 @@ class TicTacToe
     end
   end
 
-  def cats_game
+  def cats_game?
     !winner(X_MARK) && !winner(O_MARK) && @board.none? { |cell| cell == " " }
   end
 end
