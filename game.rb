@@ -20,7 +20,7 @@ class TicTacToe
   end
 
   def start
-    puts "Instructions: Please enter a number between 1 - 9 for the corresponding cells blow."
+    puts "Instructions: Please enter a number between 1 - 9 for the corresponding cells below."
     puts ""
     puts " 1 | 2 | 3 "
     puts "-----------"
@@ -36,16 +36,16 @@ class TicTacToe
     9.times do
       computer_turn
       create_board
-      break if winner(X_MARK) || winner(O_MARK) || cats_game
+      break if winner?(X_MARK) || winner?(O_MARK) || cats_game?
       player_turn
-      break if winner(X_MARK) || winner(O_MARK) || cats_game
+      break if winner?(X_MARK) || winner?(O_MARK) || cats_game?
     end
   end
 
   def show_results
-    if cats_game
+    if cats_game?
       puts "Cats game. It's a tie."
-    elsif winner(O_MARK)
+    elsif winner?(O_MARK)
       puts "'O' player wins!!"
     else
       puts "'X' player wins!!"
@@ -66,9 +66,15 @@ class TicTacToe
     else
       puts "Number is invalid or already taken. Please enter another number."
       create_board
-      player_turn
+      # player_turn
     end
   end
+
+def current_turn_on_board(mark, value)
+  WIN_COMBOS.each do |row|
+    return empty_cell(row) if count_rows(row, mark) == value
+  end
+end
 
   def find_computer_turn
     WIN_COMBOS.each do |row|
@@ -121,14 +127,14 @@ class TicTacToe
     row.find { |index| @board[index] == " "}
   end
 
-  def winner(letter)
+  def winner?(letter)
     WIN_COMBOS.any? do |cell1, cell2, cell3|
       [letter, letter, letter] == [@board[cell1], @board[cell2], @board[cell3]]
     end
   end
 
-  def cats_game
-    !winner(X_MARK) && !winner(O_MARK) && @board.none? { |cell| cell == " " }
+  def cats_game?
+    !winner?(X_MARK) && !winner?(O_MARK) && @board.none? { |cell| cell == " " }
   end
 end
 
