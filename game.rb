@@ -20,7 +20,7 @@ class TicTacToe
   end
 
   def start
-    puts "Instructions: Please enter a number between 1 - 9 for the corresponding cells below."
+    puts "Welcome to TicTacToe! Instructions: Please enter a number between 1 - 9 for the corresponding cells below."
     puts ""
     puts " 1 | 2 | 3 "
     puts "-----------"
@@ -66,7 +66,7 @@ class TicTacToe
     else
       puts "Number is invalid or already taken. Please enter another number."
       create_board
-      # player_turn
+      player_turn
     end
   end
 
