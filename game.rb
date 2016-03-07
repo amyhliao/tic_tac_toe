@@ -28,6 +28,7 @@ class TicTacToe
     puts "-----------"
     puts " 7 | 8 | 9 "
     puts ""
+    puts "The computer entered the first move."
     start_game
     show_results
   end
