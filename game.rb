@@ -19,7 +19,7 @@ class TicTacToe
     puts ""
   end
 
-  def start
+  def display_intro
     puts "Welcome to TicTacToe! The game is simple, the first to get 3 in a row wins the game! Instructions: Please enter a number between 1 - 9 for the corresponding cells below."
     puts ""
     puts " 1 | 2 | 3 "
@@ -28,6 +28,11 @@ class TicTacToe
     puts "-----------"
     puts " 7 | 8 | 9 "
     puts ""
+    sleep(1)
+    puts "The computer entered the first move."
+  end
+
+  def start
     start_game
     show_results
   end
@@ -139,4 +144,5 @@ end
 end
 
 game = TicTacToe.new
+game.display_intro
 game.start
