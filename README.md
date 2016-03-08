@@ -29,3 +29,5 @@ Once the repository is cloned to your computer, get into the tic_tac_toe file by
 ruby game.rb
 ```
 ![Start Game](../images/terminal_start.png)
+
+Hit Enter and enjoy the game!!
