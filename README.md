@@ -11,7 +11,7 @@ This is a ruby command line application that allows an ambitious player to attem
 ##To Play:
 To get the game and play, copy the link from the repository like the image below:
 
-![Cloning TicTacToe](../images/clone_game.png)
+![Cloning TicTacToe](images/clone_game.png)
 
 or copy the following link:
 `https://github.com/amyhliao/tic_tac_toe.git`
@@ -25,6 +25,6 @@ Once the repository is cloned to your computer, get into the tic_tac_toe file by
 ```shell
 ruby game.rb
 ```
-![Start Game](../images/terminal_start.png)
+![Start Game](images/terminal_start.png)
 
 Hit Enter and enjoy the game!!
