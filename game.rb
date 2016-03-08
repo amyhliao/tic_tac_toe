@@ -20,7 +20,8 @@ class TicTacToe
   end
 
   def display_intro
-    puts "Welcome to TicTacToe! The game is simple, the first to get 3 in a row wins the game! To play please enter a number between 1 - 9 for the corresponding cells below."
+    puts "Welcome to TicTacToe! The game is simple, the first to get 3 in a row wins the game!"
+    display_instructions
     puts ""
     puts " 1 | 2 | 3 "
     puts "-----------"
@@ -30,6 +31,10 @@ class TicTacToe
     puts ""
     sleep(2)
     puts "The computer made the first move."
+  end
+
+  def display_instructions
+    puts "Please enter a number between 1 - 9 for the corresponding cells."
   end
 
   def display_tie
@@ -72,7 +77,7 @@ class TicTacToe
   end
 
   def player_turn
-    puts "Please enter a number between 1 - 9"
+    display_instructions
     turn = gets.to_i - 1
     if check_num(turn)
       update_board(turn, X_MARK)
