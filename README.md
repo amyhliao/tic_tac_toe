@@ -23,7 +23,9 @@ Now with the copied link, input the following in the bash terminal:
 $ git clone https://github.com/amyhliao/tic_tac_toe.git
 ```
 
-Once the repository is cloned to your computer, get into the tic_tac_toe file by using the `cd` command in the bash terminal. Wh
+Once the repository is cloned to your computer, get into the tic_tac_toe file by using the `cd` command in the bash terminal. When you are in the file, enter the following command:
+
 ```shell
 ruby game.rb
 ```
+![Start Game](../images/terminal_start.png)
