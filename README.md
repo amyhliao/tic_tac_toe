@@ -7,3 +7,13 @@ This is a ruby command line application that allows an ambitious player to attem
 - Play against a computer player
 - Have some user interface (text is fine)
 - Never lose and win whenever possible
+
+##To Play:
+
+```shell
+$ git clone https://github.com/amyhliao/tic_tac_toe.git
+```
+
+```shell
+ruby game.rb
+```
