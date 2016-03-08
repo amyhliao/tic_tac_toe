@@ -28,8 +28,16 @@ class TicTacToe
     puts "-----------"
     puts " 7 | 8 | 9 "
     puts ""
-    sleep(1)
-    puts "The computer entered the first move."
+    sleep(2)
+    puts "The computer made the first move."
+  end
+
+  def display_tie
+    puts "Cats game. It's a tie."
+  end
+
+  def display_winner(letter)
+    puts "'#{letter}' player wins!!"
   end
 
   def start
@@ -49,11 +57,11 @@ class TicTacToe
 
   def show_results
     if cats_game?
-      puts "Cats game. It's a tie."
+      display_tie
     elsif winner?(O_MARK)
-      puts "'O' player wins!!"
+      display_winner(O_MARK)
     else
-      puts "'X' player wins!!"
+      display_winner(X_MARK)
     end
     create_board
   end
