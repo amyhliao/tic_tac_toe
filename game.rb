@@ -37,6 +37,10 @@ class TicTacToe
     puts "Please enter a number between 1 - 9 for the corresponding cells."
   end
 
+  def display_invalid_move
+    puts "Number is invalid or already taken. Please enter another number."
+  end
+
   def display_tie
     puts "Cats game. It's a tie."
   end
@@ -82,7 +86,7 @@ class TicTacToe
     if check_num(turn)
       update_board(turn, X_MARK)
     else
-      puts "Number is invalid or already taken. Please enter another number."
+      display_invalid_move
       create_board
       player_turn
     end
