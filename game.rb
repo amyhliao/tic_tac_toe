@@ -20,7 +20,8 @@ class TicTacToe
   end
 
   def display_intro
-    puts "Welcome to TicTacToe! The game is simple, the first to get 3 in a row wins the game! Instructions: Please enter a number between 1 - 9 for the corresponding cells below."
+    puts "Welcome to TicTacToe! The game is simple, the first to get 3 in a row wins the game!"
+    display_instructions
     puts ""
     puts " 1 | 2 | 3 "
     puts "-----------"
@@ -28,8 +29,24 @@ class TicTacToe
     puts "-----------"
     puts " 7 | 8 | 9 "
     puts ""
-    sleep(1)
-    puts "The computer entered the first move."
+    sleep(2)
+    puts "The computer made the first move."
+  end
+
+  def display_instructions
+    puts "Please enter a number between 1 - 9 for the corresponding cells."
+  end
+
+  def display_invalid_move
+    puts "Sorry, the cell number you entered is invalid or already taken. Please enter another number."
+  end
+
+  def display_tie
+    puts "Cats game! It's a tie. (=^・ｪ・^=)"
+  end
+
+  def display_winner(letter)
+    puts "'#{letter}' player wins!!"
   end
 
   def start
@@ -49,11 +66,11 @@ class TicTacToe
 
   def show_results
     if cats_game?
-      puts "Cats game. It's a tie."
+      display_tie
     elsif winner?(O_MARK)
-      puts "'O' player wins!!"
+      display_winner(O_MARK)
     else
-      puts "'X' player wins!!"
+      display_winner(X_MARK)
     end
     create_board
   end
@@ -64,12 +81,12 @@ class TicTacToe
   end
 
   def player_turn
-    puts "Please enter a number between 1 - 9"
+    display_instructions
     turn = gets.to_i - 1
     if check_num(turn)
       update_board(turn, X_MARK)
     else
-      puts "Number is invalid or already taken. Please enter another number."
+      display_invalid_move
       create_board
       player_turn
     end
