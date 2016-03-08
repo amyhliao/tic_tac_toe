@@ -20,7 +20,7 @@ class TicTacToe
   end
 
   def display_intro
-    puts "Welcome to TicTacToe! The game is simple, the first to get 3 in a row wins the game! Instructions: Please enter a number between 1 - 9 for the corresponding cells below."
+    puts "Welcome to TicTacToe! The game is simple, the first to get 3 in a row wins the game! To play please enter a number between 1 - 9 for the corresponding cells below."
     puts ""
     puts " 1 | 2 | 3 "
     puts "-----------"
