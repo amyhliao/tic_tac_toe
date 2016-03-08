@@ -8,6 +8,7 @@ This is a ruby command line application that allows an ambitious player to attem
 - Have some user interface (text is fine)
 - Never lose and win whenever possible
 
+
 ##To Play:
 To get the game and play, copy the link from the repository like the image below:
 
