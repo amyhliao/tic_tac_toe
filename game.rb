@@ -92,39 +92,48 @@ class TicTacToe
     end
   end
 
-def current_turn_on_board(mark, value)
-  WIN_COMBOS.each do |row|
-    return empty_cell(row) if count_rows(row, mark) == value
+  def current_turn_on_board(mark, value)
+    WIN_COMBOS.each do |row|
+      return empty_cell(row) if count_rows(row, mark) == value
+    end
   end
-end
 
   def find_computer_turn
-    WIN_COMBOS.each do |row|
-      if count_rows(row, O_MARK) == 2
-        return empty_cell(row)
-      end
-    end
-    WIN_COMBOS.each do |row|
-      if count_rows(row, X_MARK) == 2
-        return empty_cell(row)
-      end
-    end
-    WIN_COMBOS.each do |row|
-      if count_rows(row, O_MARK) == 1
-        return empty_cell(row)
-      end
-    end
-    WIN_COMBOS.each do |row|
-      if count_rows(row, X_MARK) == 1
-        return empty_cell(row)
-      end
-    end
+    current_turn_on_board(O_MARK, 2)
+    current_turn_on_board(X_MARK, 2)
+    current_turn_on_board(O_MARK, 1)
+    current_turn_on_board(X_MARK, 1)
+
     @board.each_index do |cell|
-      if @board[cell] == " "
-        return cell
-      end
+      return cell if @board[cell] == " "
     end
   end
+  #   WIN_COMBOS.each do |row|
+  #     if count_rows(row, O_MARK) == 2
+  #       return empty_cell(row)
+  #     end
+  #   end
+  #   WIN_COMBOS.each do |row|
+  #     if count_rows(row, X_MARK) == 2
+  #       return empty_cell(row)
+  #     end
+  #   end
+  #   WIN_COMBOS.each do |row|
+  #     if count_rows(row, O_MARK) == 1
+  #       return empty_cell(row)
+  #     end
+  #   end
+  #   WIN_COMBOS.each do |row|
+  #     if count_rows(row, X_MARK) == 1
+  #       return empty_cell(row)
+  #     end
+  #   end
+  #   @board.each_index do |cell|
+  #     if @board[cell] == " "
+  #       return cell
+  #     end
+  #   end
+  # end
 
   def update_board(move, player)
     @board[move] = player
