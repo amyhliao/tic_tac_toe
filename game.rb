@@ -38,11 +38,11 @@ class TicTacToe
   end
 
   def display_invalid_move
-    puts "Number is invalid or already taken. Please enter another number."
+    puts "Sorry, the cell number you entered is invalid or already taken. Please enter another number."
   end
 
   def display_tie
-    puts "Cats game. It's a tie."
+    puts "Cats game! It's a tie. (=^・ｪ・^=)"
   end
 
   def display_winner(letter)
