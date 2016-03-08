@@ -13,18 +13,15 @@ To get the game and play, copy the link from the repository like the image below
 
 ![Cloning TicTacToe](../images/clone_game.png)
 
-or copy this link:
+or copy the following link:
 `https://github.com/amyhliao/tic_tac_toe.git`
 
-
 Now with the copied link, input the following in the bash terminal:
-
 ```shell
 $ git clone https://github.com/amyhliao/tic_tac_toe.git
 ```
 
 Once the repository is cloned to your computer, get into the tic_tac_toe file by using the `cd` command in the bash terminal. When you are in the file, enter the following command:
-
 ```shell
 ruby game.rb
 ```
