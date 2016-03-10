@@ -1,7 +1,4 @@
-class TicTacToe
-  X_MARK = "X"
-  O_MARK = "O"
-  WIN_COMBOS = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+class BoardPresenter
 
   attr_accessor :board
 
@@ -18,7 +15,9 @@ class TicTacToe
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
     puts ""
   end
+end
 
+class DisplayContents
   def display_intro
     puts "Welcome to TicTacToe! The game is simple, the first to get 3 in a row wins the game!"
     display_instructions
@@ -48,6 +47,82 @@ class TicTacToe
   def display_winner(letter)
     puts "'#{letter}' player wins!!"
   end
+end
+
+class ComputerPlayer
+  X_MARK = "X"
+  O_MARK = "O"
+  WIN_COMBOS = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+
+  def computer_turn
+    turn = find_computer_turn
+    update_board(turn, O_MARK)
+  end
+
+  # def current_turn_on_board(mark, value)
+  #   WIN_COMBOS.each do |row|
+  #     return empty_cell(row) if count_rows(row, mark) == value
+  #   end
+  # end
+
+  def find_computer_turn
+  #   current_turn_on_board(O_MARK, 2)
+  #   current_turn_on_board(X_MARK, 2)
+  #   current_turn_on_board(O_MARK, 1)
+  #   current_turn_on_board(X_MARK, 1)
+
+  #   @board.each_index do |cell|
+  #     return cell if @board[cell] == " "
+  #   end
+  # end
+    WIN_COMBOS.each do |row|
+      if count_rows(row, O_MARK) == 2
+        return empty_cell(row)
+      end
+    end
+    WIN_COMBOS.each do |row|
+      if count_rows(row, X_MARK) == 2
+        return empty_cell(row)
+      end
+    end
+    WIN_COMBOS.each do |row|
+      if count_rows(row, O_MARK) == 1
+        return empty_cell(row)
+      end
+    end
+    WIN_COMBOS.each do |row|
+      if count_rows(row, X_MARK) == 1
+        return empty_cell(row)
+      end
+    end
+    @board.each_index do |cell|
+      if @board[cell] == " "
+        return cell
+      end
+    end
+  end
+
+  def update_board(move, player)
+    @board[move] = player
+  end
+
+  def count_rows(row, player)
+    total = 0
+    row.each do |index|
+      total += 1 if @board[index] == player
+      if @board[index] != player && @board[index] != " "
+        return 0
+      end
+    end
+    total
+  end
+
+  def empty_cell(row)
+    row.find { |index| @board[index] == " "}
+  end
+end
+
+class Game < ComputerPlayer
 
   def start
     start_game
@@ -75,11 +150,91 @@ class TicTacToe
     create_board
   end
 
-  def computer_turn
-    turn = find_computer_turn
-    update_board(turn, O_MARK)
+  def winner?(letter)
+    WIN_COMBOS.any? do |cell1, cell2, cell3|
+      [letter, letter, letter] == [@board[cell1], @board[cell2], @board[cell3]]
+    end
   end
 
+  def cats_game?
+    !winner?(X_MARK) && !winner?(O_MARK) && @board.none? { |cell| cell == " " }
+  end
+end
+
+# class ComputerPlayer
+#   X_MARK = "X"
+#   O_MARK = "O"
+#   WIN_COMBOS = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+
+#   def computer_turn
+#     turn = find_computer_turn
+#     update_board(turn, O_MARK)
+#   end
+
+#   # def current_turn_on_board(mark, value)
+#   #   WIN_COMBOS.each do |row|
+#   #     return empty_cell(row) if count_rows(row, mark) == value
+#   #   end
+#   # end
+
+#   def find_computer_turn
+#   #   current_turn_on_board(O_MARK, 2)
+#   #   current_turn_on_board(X_MARK, 2)
+#   #   current_turn_on_board(O_MARK, 1)
+#   #   current_turn_on_board(X_MARK, 1)
+
+#   #   @board.each_index do |cell|
+#   #     return cell if @board[cell] == " "
+#   #   end
+#   # end
+#     WIN_COMBOS.each do |row|
+#       if count_rows(row, O_MARK) == 2
+#         return empty_cell(row)
+#       end
+#     end
+#     WIN_COMBOS.each do |row|
+#       if count_rows(row, X_MARK) == 2
+#         return empty_cell(row)
+#       end
+#     end
+#     WIN_COMBOS.each do |row|
+#       if count_rows(row, O_MARK) == 1
+#         return empty_cell(row)
+#       end
+#     end
+#     WIN_COMBOS.each do |row|
+#       if count_rows(row, X_MARK) == 1
+#         return empty_cell(row)
+#       end
+#     end
+#     @board.each_index do |cell|
+#       if @board[cell] == " "
+#         return cell
+#       end
+#     end
+#   end
+
+#   def update_board(move, player)
+#     @board[move] = player
+#   end
+
+#   def count_rows(row, player)
+#     total = 0
+#     row.each do |index|
+#       total += 1 if @board[index] == player
+#       if @board[index] != player && @board[index] != " "
+#         return 0
+#       end
+#     end
+#     total
+#   end
+
+#   def empty_cell(row)
+#     row.find { |index| @board[index] == " "}
+#   end
+# end
+
+class HumanPlayer
   def player_turn
     display_instructions
     turn = gets.to_i - 1
@@ -92,83 +247,20 @@ class TicTacToe
     end
   end
 
-  def current_turn_on_board(mark, value)
-    WIN_COMBOS.each do |row|
-      return empty_cell(row) if count_rows(row, mark) == value
-    end
-  end
-
-  def find_computer_turn
-    current_turn_on_board(O_MARK, 2)
-    current_turn_on_board(X_MARK, 2)
-    current_turn_on_board(O_MARK, 1)
-    current_turn_on_board(X_MARK, 1)
-
-    @board.each_index do |cell|
-      return cell if @board[cell] == " "
-    end
-  end
-  #   WIN_COMBOS.each do |row|
-  #     if count_rows(row, O_MARK) == 2
-  #       return empty_cell(row)
-  #     end
-  #   end
-  #   WIN_COMBOS.each do |row|
-  #     if count_rows(row, X_MARK) == 2
-  #       return empty_cell(row)
-  #     end
-  #   end
-  #   WIN_COMBOS.each do |row|
-  #     if count_rows(row, O_MARK) == 1
-  #       return empty_cell(row)
-  #     end
-  #   end
-  #   WIN_COMBOS.each do |row|
-  #     if count_rows(row, X_MARK) == 1
-  #       return empty_cell(row)
-  #     end
-  #   end
-  #   @board.each_index do |cell|
-  #     if @board[cell] == " "
-  #       return cell
-  #     end
-  #   end
-  # end
-
-  def update_board(move, player)
-    @board[move] = player
-  end
-
   def check_num(turn)
     turn.between?(0, 8) && @board[turn] == " "
   end
-
-  def count_rows(row, player)
-    total = 0
-    row.each do |index|
-      total += 1 if @board[index] == player
-      if @board[index] != player && @board[index] != " "
-        return 0
-      end
-    end
-    total
-  end
-
-  def empty_cell(row)
-    row.find { |index| @board[index] == " "}
-  end
-
-  def winner?(letter)
-    WIN_COMBOS.any? do |cell1, cell2, cell3|
-      [letter, letter, letter] == [@board[cell1], @board[cell2], @board[cell3]]
-    end
-  end
-
-  def cats_game?
-    !winner?(X_MARK) && !winner?(O_MARK) && @board.none? { |cell| cell == " " }
-  end
 end
 
-game = TicTacToe.new
-game.display_intro
+contents = DisplayContents.new
+contents.display_intro
+
+board = BoardPresenter.new
+board.create_board
+
+computer = ComputerPlayer.new
+player = HumanPlayer.new
+
+game = Game.new
 game.start
+
