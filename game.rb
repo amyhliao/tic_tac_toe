@@ -49,6 +49,44 @@ class DisplayContents
   end
 end
 
+class Game
+  def start
+    start_game
+    show_results
+  end
+
+  def start_game
+    9.times do
+      computer_turn
+      create_board
+      break if winner?(X_MARK) || winner?(O_MARK) || cats_game?
+      player_turn
+      break if winner?(X_MARK) || winner?(O_MARK) || cats_game?
+    end
+  end
+
+  def show_results
+    if cats_game?
+      display_tie
+    elsif winner?(O_MARK)
+      display_winner(O_MARK)
+    else
+      display_winner(X_MARK)
+    end
+    create_board
+  end
+
+  def winner?(letter)
+    WIN_COMBOS.any? do |cell1, cell2, cell3|
+      [letter, letter, letter] == [@board[cell1], @board[cell2], @board[cell3]]
+    end
+  end
+
+  def cats_game?
+    !winner?(X_MARK) && !winner?(O_MARK) && @board.none? { |cell| cell == " " }
+  end
+end
+
 class ComputerPlayer
   X_MARK = "X"
   O_MARK = "O"
@@ -121,118 +159,6 @@ class ComputerPlayer
     row.find { |index| @board[index] == " "}
   end
 end
-
-class Game < ComputerPlayer
-
-  def start
-    start_game
-    show_results
-  end
-
-  def start_game
-    9.times do
-      computer_turn
-      create_board
-      break if winner?(X_MARK) || winner?(O_MARK) || cats_game?
-      player_turn
-      break if winner?(X_MARK) || winner?(O_MARK) || cats_game?
-    end
-  end
-
-  def show_results
-    if cats_game?
-      display_tie
-    elsif winner?(O_MARK)
-      display_winner(O_MARK)
-    else
-      display_winner(X_MARK)
-    end
-    create_board
-  end
-
-  def winner?(letter)
-    WIN_COMBOS.any? do |cell1, cell2, cell3|
-      [letter, letter, letter] == [@board[cell1], @board[cell2], @board[cell3]]
-    end
-  end
-
-  def cats_game?
-    !winner?(X_MARK) && !winner?(O_MARK) && @board.none? { |cell| cell == " " }
-  end
-end
-
-# class ComputerPlayer
-#   X_MARK = "X"
-#   O_MARK = "O"
-#   WIN_COMBOS = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
-
-#   def computer_turn
-#     turn = find_computer_turn
-#     update_board(turn, O_MARK)
-#   end
-
-#   # def current_turn_on_board(mark, value)
-#   #   WIN_COMBOS.each do |row|
-#   #     return empty_cell(row) if count_rows(row, mark) == value
-#   #   end
-#   # end
-
-#   def find_computer_turn
-#   #   current_turn_on_board(O_MARK, 2)
-#   #   current_turn_on_board(X_MARK, 2)
-#   #   current_turn_on_board(O_MARK, 1)
-#   #   current_turn_on_board(X_MARK, 1)
-
-#   #   @board.each_index do |cell|
-#   #     return cell if @board[cell] == " "
-#   #   end
-#   # end
-#     WIN_COMBOS.each do |row|
-#       if count_rows(row, O_MARK) == 2
-#         return empty_cell(row)
-#       end
-#     end
-#     WIN_COMBOS.each do |row|
-#       if count_rows(row, X_MARK) == 2
-#         return empty_cell(row)
-#       end
-#     end
-#     WIN_COMBOS.each do |row|
-#       if count_rows(row, O_MARK) == 1
-#         return empty_cell(row)
-#       end
-#     end
-#     WIN_COMBOS.each do |row|
-#       if count_rows(row, X_MARK) == 1
-#         return empty_cell(row)
-#       end
-#     end
-#     @board.each_index do |cell|
-#       if @board[cell] == " "
-#         return cell
-#       end
-#     end
-#   end
-
-#   def update_board(move, player)
-#     @board[move] = player
-#   end
-
-#   def count_rows(row, player)
-#     total = 0
-#     row.each do |index|
-#       total += 1 if @board[index] == player
-#       if @board[index] != player && @board[index] != " "
-#         return 0
-#       end
-#     end
-#     total
-#   end
-
-#   def empty_cell(row)
-#     row.find { |index| @board[index] == " "}
-#   end
-# end
 
 class HumanPlayer
   def player_turn
