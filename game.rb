@@ -1,5 +1,4 @@
 class BoardPresenter
-
   attr_accessor :board
 
   def initialize
@@ -97,14 +96,14 @@ class ComputerPlayer
     update_board(turn, O_MARK)
   end
 
-  # def current_turn_on_board(mark, value)
-  #   WIN_COMBOS.each do |row|
-  #     return empty_cell(row) if count_rows(row, mark) == value
-  #   end
-  # end
+  def current_turn_on_board(mark, value)
+    WIN_COMBOS.each do |row|
+      return empty_cell(row) if count_rows(row, mark) == value
+    end
+  end
 
   def find_computer_turn
-  #   current_turn_on_board(O_MARK, 2)
+    current_turn_on_board(O_MARK, 2)
   #   current_turn_on_board(X_MARK, 2)
   #   current_turn_on_board(O_MARK, 1)
   #   current_turn_on_board(X_MARK, 1)
@@ -113,11 +112,11 @@ class ComputerPlayer
   #     return cell if @board[cell] == " "
   #   end
   # end
-    WIN_COMBOS.each do |row|
-      if count_rows(row, O_MARK) == 2
-        return empty_cell(row)
-      end
-    end
+    # WIN_COMBOS.each do |row|
+    #   if count_rows(row, O_MARK) == 2
+    #     return empty_cell(row)
+    #   end
+    # end
     WIN_COMBOS.each do |row|
       if count_rows(row, X_MARK) == 2
         return empty_cell(row)
