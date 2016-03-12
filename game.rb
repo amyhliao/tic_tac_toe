@@ -14,9 +14,9 @@ class BoardPresenter
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
     puts ""
   end
-end
+# end
 
-class DisplayContents
+# class DisplayContents
   def display_intro
     puts "Welcome to TicTacToe! The game is simple, the first to get 3 in a row wins the game!"
     display_instructions
@@ -46,9 +46,9 @@ class DisplayContents
   def display_winner(letter)
     puts "'#{letter}' player wins!!"
   end
-end
+# end
 
-class Game
+# class Game
   def start
     start_game
     show_results
@@ -84,9 +84,9 @@ class Game
   def cats_game?
     !winner?(X_MARK) && !winner?(O_MARK) && @board.none? { |cell| cell == " " }
   end
-end
+# end
 
-class ComputerPlayer
+# class ComputerPlayer
   X_MARK = "X"
   O_MARK = "O"
   WIN_COMBOS = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
@@ -157,9 +157,9 @@ class ComputerPlayer
   def empty_cell(row)
     row.find { |index| @board[index] == " "}
   end
-end
+# end
 
-class HumanPlayer
+# class HumanPlayer
   def player_turn
     display_instructions
     turn = gets.to_i - 1
@@ -177,15 +177,17 @@ class HumanPlayer
   end
 end
 
-contents = DisplayContents.new
-contents.display_intro
+# contents = DisplayContents.new
+# contents.display_intro
 
 board = BoardPresenter.new
-board.create_board
+board.display_intro
+board.start
+# board.create_board
 
-computer = ComputerPlayer.new
-player = HumanPlayer.new
+# computer = ComputerPlayer.new
+# player = HumanPlayer.new
 
-game = Game.new
-game.start
+# game = Game.new
+# game.start
 
