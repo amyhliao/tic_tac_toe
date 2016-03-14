@@ -122,11 +122,11 @@ class BoardPresenter
         return empty_cell(row)
       end
     end
-    WIN_COMBOS.each do |row|
-      if count_rows(row, O_MARK) == 1
-        return empty_cell(row)
-      end
-    end
+    # WIN_COMBOS.each do |row|
+    #   if count_rows(row, O_MARK) == 1
+    #     return empty_cell(row)
+    #   end
+    # end
     WIN_COMBOS.each do |row|
       if count_rows(row, X_MARK) == 1
         return empty_cell(row)
