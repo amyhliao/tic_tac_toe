@@ -105,7 +105,7 @@ class BoardPresenter
   def find_computer_turn
     current_turn_on_board(O_MARK, 2)
   #   current_turn_on_board(X_MARK, 2)
-    current_turn_on_board(O_MARK, 1)
+  #   current_turn_on_board(O_MARK, 1)
   #   current_turn_on_board(X_MARK, 1)
 
   #   @board.each_index do |cell|
